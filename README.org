@@ -1,0 +1,47 @@
+#+title:Telegram pipeline
+
+
+Project made for the course data analysis from EBAC (British School of Creative Arts in portuguese) the goal of this project was to create a system to save the messages of a telegram group into a s3 bucket from AWS and then perform the cleaning and enrichment of the data using lambdas functions, the project can be divided into 3 parts: telegram bot, the storage process and the cleaning process. Bellow a image that shows this process.
+
+[https://imgur.com/9z8Ax4C.png]
+
+
+*(Telegram bot
+
+To create the bot, you need to follow these steps:
+
+    1. Access the website [https://web.telegram.org]
+    2. In the search bar, type “BotFather ”
+    3. Send the message “ /newbot” to create a new bot
+    4. Give a name to the bot, it can be any name
+    5. Create a username for the bot, it must be unique, and it must end with“ _bot ”
+    6. The bot father will send a message with the token to use the API, save this token in a safe place
+    7. To recover the token of your bot, send the message “ /mybots”, select the bot that you want to recover the token then select the option “API TOKEN ”
+
+With the bot created, we need to do some configurations:
+
+    1. Create a group in the telegram
+    2. Add the bot in the group
+    3. Give it the administrator role
+    4. Start a new conversation with the “BotFather ”
+    5. Send the message “ /mybots”, then select the option “Bot Settings” to configure your
+    6. Select the options “Allow groups” then turn it off
+
+Now to see if the bot is working as intended, run this python script:
+
+#+BEGIN_SRC python
+
+from getpass import getpass
+import json
+import requests
+
+# this will ask for the API token
+token = getpass()
+
+response = requests.get(url=f'{base_url}/getMe')
+print(f'{base_url}/getMe')
+
+# It must return the bot information
+print(json.dumps(json.loads(response.text), indent=2))
+#+END_SRC
+Access Access Access 
